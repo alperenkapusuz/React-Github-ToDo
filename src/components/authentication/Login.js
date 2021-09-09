@@ -21,7 +21,7 @@ const Login = () => {
           alert(err.message);
         })
         .then(() => {
-          history.push("/mainmenu");
+          history.push("/dashboard");
         });
     } catch {
       setError("Failed to log in");

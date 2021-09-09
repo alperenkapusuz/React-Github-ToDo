@@ -1,19 +1,16 @@
 import React from 'react'
 import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import Login from './components/authentication/Login'
-import MainMenu from './components/menu/MainMenu'
-
+import Dashboard from './components/menu/Dashboard'
 
 const App = () => {
   return (
-   
       <BrowserRouter>
         <Switch>
           <Route path="/login" component={Login}/>
-          <Route path="/mainmenu" component={MainMenu}/>
+          <Route path="/dashboard" component={Dashboard}/>
         </Switch>
       </BrowserRouter>
-    
   )
 }
 

@@ -1,11 +1,11 @@
 import React from 'react'
 
-const MainMenu = () => {
+const Todo = () => {
     return (
         <div>
-            <h1>sa</h1>
+            <h1>to do</h1>
         </div>
     )
 }
 
-export default MainMenu
+export default Todo
