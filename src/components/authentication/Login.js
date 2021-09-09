@@ -1,21 +1,24 @@
 import React, { useState } from "react";
 import { GithubLoginButton } from "react-social-login-buttons";
-import { auth, provider } from "../../firebase/Firebase";
-//import {  useHistory } from "react-router-dom";
+import { auth,provider } from "../../firebase/Firebase";
+import {  useHistory } from "react-router-dom";
 
 const Login = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  //const history = useHistory();
+  const history = useHistory();
+
 
   async function githubSignIn() {
+    
     try {
       setError("");
       setLoading(true);
       await auth.signInWithPopup(provider).catch((err) => {
         alert(err.message);
+      }).then(()=>{
+        history.push("/mainmenu");
       });
-     // history.push("/");
     } catch {
       setError("Failed to log in");
     }
