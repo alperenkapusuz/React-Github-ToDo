@@ -13,3 +13,6 @@ const app = firebase.initializeApp({
 
 export const auth = app.auth()
 export default app
+
+//github
+export const provider = new firebase.auth.GithubAuthProvider();
