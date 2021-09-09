@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { db, auth } from "../../firebase/Firebase";
-import { Card, Form, Input, Button, Table } from "antd";
+import { Card, Form, Input, Button } from "antd";
+import {DeleteOutlined} from '@ant-design/icons'
 
 const Dashboard = () => {
   const [id, setId] = useState("");
@@ -18,6 +19,13 @@ const Dashboard = () => {
     setTodo("");
   };
 
+  const removeToFirestore = (item) => {
+     auth.onAuthStateChanged((user) => {
+          db.collection(user.uid).doc(`${item.id}`).delete()
+        })
+      }
+  
+
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       db.collection(user.uid).onSnapshot((snapshot) => {
@@ -33,7 +41,7 @@ const Dashboard = () => {
 
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
-      <Card style={{ margin: "50px", width: "400px", height: "500px" }}>
+      <Card style={{ margin: "50px", width: "400px" }}>
         <h1>To do</h1>
         <Form>
           <Form.Item>
@@ -48,32 +56,26 @@ const Dashboard = () => {
             </Button>
           </Form.Item>
         </Form>
-        <div
+      </Card>
+      <Card style={{ margin: "50px", width: "400px" }}>
+      <div
           style={{
             maxHeight: "300px",
             overflowY: "auto",
           }}
-        >
-          <table>
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>TODO</th>
-              </tr>
-            </thead>
+        >      
+          <table >
             <tbody>
             {items.map(({ id, data: { todo } }) => (
               <tr>
-                <th scope="row">{id}</th>
+                <th scope="row">{id}.</th>
                 <td>{todo}</td>
+                <td><DeleteOutlined onClick={()=>removeToFirestore({id})}/></td>
               </tr>
             ))}
             </tbody>
           </table>
         </div>
-      </Card>
-      <Card style={{ margin: "50px", width: "400px", height: "500px" }}>
-
       </Card>
     </div>
   );
