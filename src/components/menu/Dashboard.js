@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { db, auth } from "../../firebase/Firebase";
 import { Card, Form, Input, Button } from "antd";
 import {DeleteOutlined} from '@ant-design/icons'
+import './Dashboard.css'
 
 const Dashboard = () => {
   const [id, setId] = useState("");
@@ -40,43 +41,42 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div style={{ display: "flex", justifyContent: "center" }}>
+    <div className="div">
+      <div className="div1">
       <Card style={{ margin: "50px", width: "400px" }}>
         <h1>To do</h1>
         <Form>
           <Form.Item>
-            <Input value={id} onChange={(e) => setId(e.target.value)} />
+            <Input value={id} placeholder="Id" onChange={(e) => setId(e.target.value)} />
           </Form.Item>
           <Form.Item>
-            <Input value={todo} onChange={(e) => setTodo(e.target.value)} />
+            <Input value={todo} placeholder="todo" onChange={(e) => setTodo(e.target.value)} />
           </Form.Item>
           <Form.Item>
-            <Button type="primary" onClick={addToFirestore}>
+            <Button type="primary" style={{ marginLeft:"140px"}} onClick={addToFirestore}>
               Add
             </Button>
           </Form.Item>
         </Form>
       </Card>
-      <Card style={{ margin: "50px", width: "400px" }}>
-      <div
-          style={{
-            maxHeight: "300px",
-            overflowY: "auto",
-          }}
-        >      
+      </div>
+      <div className="div2">
+      <Card style={{ margin: "50px", width: "400px", height:"275px" }}>
+      <div className="table-div">      
           <table >
             <tbody>
             {items.map(({ id, data: { todo } }) => (
-              <tr>
+              <tr className="table-data">
                 <th scope="row">{id}.</th>
                 <td>{todo}</td>
-                <td><DeleteOutlined onClick={()=>removeToFirestore({id})}/></td>
+                <td><DeleteOutlined onClick={()=>removeToFirestore({id})} style={{color:"red" ,marginLeft:"20px"}}/></td>
               </tr>
             ))}
             </tbody>
           </table>
         </div>
       </Card>
+      </div>
     </div>
   );
 };

@@ -1,0 +1,22 @@
+.div{
+    display: flex;
+    justify-content: center;
+}
+
+.div1 h1{
+    margin-left: 140px;
+}
+
+.table-div-body{
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.table-data{
+    font-size: 25px;
+}
+
+.table-data th{
+    color: blue;
+    padding-right: 10px;
+}
