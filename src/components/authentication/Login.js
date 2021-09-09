@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { GithubLoginButton } from "react-social-login-buttons";
-import { auth, provider } from "../firebase/Firebase";
+import { auth, provider } from "../../firebase/Firebase";
 //import {  useHistory } from "react-router-dom";
 
 const Login = () => {
